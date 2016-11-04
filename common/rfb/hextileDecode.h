@@ -91,7 +91,8 @@ static void HEXTILE_DECODE (const Rect& r, rdr::InStream* is,
           int rowAdd = t.width() - w;
           while (h-- > 0) {
             int len = w;
-            while (len-- > 0) *ptr++ = fg;
+            while (len-- > 0 && ptr < &buf[sizeof(buf) / sizeof(buf[0])])
+              *ptr++ = fg;
             ptr += rowAdd;
           }
         }
